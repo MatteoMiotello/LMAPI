@@ -18,7 +18,6 @@ router.post('/create', (req, res) => {
         country: req.body.country,
         state: req.body.state,
         zip: req.body.zip,
-
     });
 
     workshop.save()

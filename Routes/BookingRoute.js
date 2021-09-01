@@ -11,6 +11,14 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }));
 
+router.get( '/all', ((req, res) => {
+    Booking.find()
+        .populate( { path: 'workshop', select: 'name city -_id' } )
+        .select('date bookingType')
+        .then( data => res.json(data) )
+        .catch(err => res.json(err));
+}) )
+
 router.post('/create', (req, res) => {
     const booking = new Booking({
         date: req.body.date,
