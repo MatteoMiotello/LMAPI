@@ -77,6 +77,16 @@ Ritorna i workshop preferiti di un person:
 }
 ```
 
+###PATCH /changePassword/:id
+
+Modifica la password dell'utente con id, la richiesta deve contenere un questo tipo di JSON:
+
+```json
+{
+  "oldPassword": "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2",
+  "newPassword": "21d19e923ae21043fa5810704eab55bda682dc9e036bbf4c50eb732febdff835"
+}
+```
 ### POST /create
 
 Crea un nuovo person, il body della richiesta deve avere questa struttura:
@@ -215,6 +225,12 @@ Ritorna tutti i workshop disponibili
   }
 ]
 ```
+
+###GET /find/:text
+
+Permette di cercare tramite testo in tutti i campi di un workshop il testo riportato
+
+Ritorna il JSON del workshop risultante
 
 ### POST /create
 

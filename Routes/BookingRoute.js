@@ -2,7 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 const Booking = require('../Models/Booking');
-
 router.get('/', ((req, res) => {
     Booking.find()
         .populate('workshop')
@@ -40,5 +39,17 @@ router.post('/create', (req, res) => {
         .then(data => res.json(data))
         .catch(err => res.json(err));
 });
+
+router.delete( '/delete/:id', (req, res) => {
+    Booking.findByIdAndRemove( req.params.id, ( err ) => {
+        if ( err ) {
+            res.json( err );
+        } else {
+            res.json( {
+                success: true
+            } );
+        }
+    } )
+} )
 
 module.exports = router;

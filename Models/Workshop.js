@@ -33,4 +33,6 @@ const Workshop = mongoose.Schema({
         required: true,
     }
 });
+Workshop.index( { '$**': 'text' } );
+
 module.exports = mongoose.model( 'Workshop', Workshop );

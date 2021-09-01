@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Vehicle = mongoose.Schema( {
     plate: {
         type: String,
@@ -16,6 +15,10 @@ const Vehicle = mongoose.Schema( {
     year: {
         type: Number,
         required: true
+    },
+    person: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Person'
     }
 } );
 

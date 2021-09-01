@@ -9,6 +9,16 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }));
 
+router.get( '/find/:text', ( req, res ) => {
+    Workshop.find( { $text: { $search: req.params.text }    } )
+        .exec( ( err, doc ) => {
+            if ( err ) {
+                res.json( err );
+            } else {
+                res.json( doc );
+            }
+        } )
+})
 
 router.post('/create', (req, res) => {
     const workshop = new Workshop({
