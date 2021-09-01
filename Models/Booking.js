@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Booking = mongoose.Schema( {
     date: {
         type: Date,
-        require: true
+        required: true
     },
     person: {
         type: mongoose.Schema.Types.ObjectId,

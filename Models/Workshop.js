@@ -3,34 +3,34 @@ const mongoose = require('mongoose');
 const Workshop = mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
     },
     phone: {
         type: String,
-        require: true,
+        required: true,
     },
     city: {
         type: String,
-        require: true,
+        required: true,
     },
     address: {
         type: String,
-        require: true,
+        required: true,
     },
     country: {
         type: String,
-        require: true
+        required: true
     },
     state: {
         type: String,
-        require: true,
+        required: true,
     },
     zip: {
         type: Number,
-        require: true,
+        required: true,
     }
 });
 module.exports = mongoose.model( 'Workshop', Workshop );

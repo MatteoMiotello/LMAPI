@@ -3,19 +3,19 @@ const mongoose = require('mongoose');
 const Vehicle = mongoose.Schema( {
     plate: {
         type: String,
-        require: true
+        required: true
     },
     maker: {
         type: String,
-        require: true
+        required: true
     },
     model: {
         type: String,
-        require: true
+        required: true
     },
     year: {
         type: Number,
-        require: true
+        required: true
     }
 } );
 

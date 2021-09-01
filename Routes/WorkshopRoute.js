@@ -15,10 +15,11 @@ router.post('/create', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         city: req.body.city,
-        street: req.body.street,
+        address: req.body.address,
         country: req.body.country,
         state: req.body.state,
         zip: req.body.zip,
+        phone: req.body.phone
     });
 
     workshop.save()

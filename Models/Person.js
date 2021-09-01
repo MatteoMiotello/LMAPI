@@ -3,27 +3,27 @@ const mongoose = require('mongoose');
 const Person = new mongoose.Schema({
     email: {
         type: String,
-        require: true
+        required: true
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     name: {
         type: String,
-        require: true
+        required: true
     },
     surname: {
         type: String,
-        require: true
+        required: true
     },
     birthDate: {
         type: String,
-        require: false
+        required: false
     },
     phone: {
         type: Number,
-        require: true
+        required: true
     },
     preferredWorkshops: [ {
         type: mongoose.Schema.Types.ObjectId,

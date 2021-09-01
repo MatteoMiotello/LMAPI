@@ -17,7 +17,7 @@ app.get( '/', ((req, res) => {
     res.send( 'Hello World' );
 }) );
 
-app.use( '/vehicles', require( './Routes/VehicleRoute' ) );
+app.use( '/vehicle', require( './Routes/VehicleRoute' ) );
 app.use( '/workshop', require( './Routes/WorkshopRoute' ) );
 app.use( '/booking', require( './Routes/BookingRoute' ) );
 app.use( '/person', require( './Routes/PersonRoute' ) );

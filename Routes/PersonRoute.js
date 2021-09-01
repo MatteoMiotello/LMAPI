@@ -9,12 +9,19 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }));
 
+router.get( '/details/:id', ( req, res ) => {
+    Person.findOne( { _id: req.params.id } )
+        .select( '-preferredWorkshops' )
+        .then( data => res.json( data ) )
+        .catch(err => res.json(err));
+} );
+
 router.get('/preferredWorkshops/:personId', (req, res) => {
     Person.findOne({_id: req.params.personId})
         .populate('preferredWorkshops')
         .select( 'preferredWorkshops -_id' )
         .then(data => {
-            res.json(data)
+            res.json(data.preferredWorkshops)
         })
         .catch(err => res.json(err));
 });
@@ -38,7 +45,7 @@ router.post('/create', (req, res) => {
 router.post('/addPreferredWorkshop/:personId', (req, res) => {
     Person.update(
         {_id: req.params.personId},
-        {$push: {preferredWorkshop: req.body.workshop}},
+        {$push: {preferredWorkshops: req.body.workshop}},
         () => res.send('Completed')
     )
 });
