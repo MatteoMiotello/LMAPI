@@ -24,7 +24,12 @@ const Person = new mongoose.Schema({
     phone: {
         type: Number,
         require: true
-    }
+    },
+    preferredWorkshops: [ {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Workshop',
+        default:[],
+    } ]
 });
 
 module.exports = mongoose.model( 'Person', Person )

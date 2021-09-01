@@ -1,13 +1,24 @@
 const express = require('express');
 
 const router = express.Router();
-const Person = require( '../Models/Person');
+const Person = require('../Models/Person');
 
 router.get('/', ((req, res) => {
     Person.find()
         .then(data => res.json(data))
         .catch(err => res.json(err));
 }));
+
+router.get('/preferredWorkshops/:personId', (req, res) => {
+    Person.findOne({_id: req.params.personId})
+        .populate('preferredWorkshops')
+        .select( 'preferredWorkshops -_id' )
+        .then(data => {
+            res.json(data)
+        })
+        .catch(err => res.json(err));
+});
+
 
 router.post('/create', (req, res) => {
     const person = new Person({
@@ -22,6 +33,15 @@ router.post('/create', (req, res) => {
     person.save()
         .then(data => res.json(data))
         .catch(err => res.json(err));
-})
+});
+
+router.post('/addPreferredWorkshop/:personId', (req, res) => {
+    Person.update(
+        {_id: req.params.personId},
+        {$push: {preferredWorkshop: req.body.workshop}},
+        () => res.send('Completed')
+    )
+});
+
 
 module.exports = router;

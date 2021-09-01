@@ -9,6 +9,7 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }));
 
+
 router.post('/create', (req, res) => {
     const workshop = new Workshop({
         name: req.body.name,

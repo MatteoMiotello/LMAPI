@@ -16,7 +16,7 @@ const Workshop = mongoose.Schema({
         type: String,
         require: true,
     },
-    street: {
+    address: {
         type: String,
         require: true,
     },
