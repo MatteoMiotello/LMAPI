@@ -239,6 +239,17 @@ Crea una nuova prenotazione, la richiesta deve contenere un JSON come questo:
 }
 ```
 
+###DELETE /delete/:id
+
+Elimina un booking, nel caso di successo torna un JSON contenente il veicolo appena eliminato altrimenti ritorna:
+
+```json
+{
+  "success": false,
+  "error": "error message"
+}
+```
+
 ## Workshop
 
 ### GET /
@@ -283,6 +294,16 @@ Crea un nuovo workshop, la richiesta deve contenere questo JSON:
 }
 ```
 
+###DELETE /delete/:id
+
+Elimina un workshop, nel caso di successo torna un JSON contenente il veicolo appena eliminato altrimenti ritorna:
+
+```json
+{
+  "success": false,
+  "error": "error message"
+}
+```
 ## Vehicle
 
 ### GET /
@@ -345,5 +366,16 @@ Crea un nuovo veicolo, la richiesta deve contenere questo JSON:
   "maker": "FJ300GZ",
   "model": "Mito",
   "year": "2015"
+}
+```
+
+###DELETE /delete/:id
+
+Elimina un veicolo, nel caso di successo torna un JSON contenente il veicolo appena eliminato altrimenti ritorna:
+
+```json
+{
+  "success": false,
+  "error": "error message"
 }
 ```

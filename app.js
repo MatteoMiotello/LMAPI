@@ -21,15 +21,15 @@ mongoose.connect(process.env.DB_CONNECTION,
         }
     });
 
-app.use(((req, res) => {
-    if (mongoose.connection.readyState !== 1) {
-        res.status(500).json({
-            error: 'db is not connected',
-        });
-    } else {
-        res.json(req.body);
-    }
-}))
+// app.use(((req, res) => {
+//     if (mongoose.connection.readyState !== 1) {
+//         res.status(500).json({
+//             error: 'db is not connected',
+//         });
+//     } else {
+//         res.json(req.body);
+//     }
+// }))
 
 app.get('/', ((req, res) => {
     res.send('Hello World');

@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const Booking = require('../Models/Booking');
+const Vehicle = require("../Models/Vehicle");
 router.get('/', ((req, res) => {
     Booking.find()
         .populate('workshop')
@@ -40,16 +41,24 @@ router.post('/create', (req, res) => {
         .catch(err => res.json(err));
 });
 
-router.delete( '/delete/:id', (req, res) => {
-    Booking.findByIdAndRemove( req.params.id, ( err ) => {
-        if ( err ) {
-            res.json( err );
-        } else {
-            res.json( {
-                success: true
-            } );
-        }
-    } )
-} )
+router.delete('/delete/:id', ((req, res) => {
+    Booking.findByIdAndDelete(req.params.id,
+        null,
+        (err, doc) => {
+            if (!doc) {
+                res.status(404).send('Not found');
+                return;
+            }
+
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    error: err,
+                });
+            } else {
+                res.json(doc)
+            }
+        })
+}));
 
 module.exports = router;

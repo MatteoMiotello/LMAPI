@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const Workshop = require('../Models/Workshop');
+const Vehicle = require("../Models/Vehicle");
 
 router.get('/', ((req, res) => {
     Workshop.find()
@@ -9,15 +10,15 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }));
 
-router.get( '/find/:text', ( req, res ) => {
-    Workshop.find( { $text: { $search: req.params.text }    } )
-        .exec( ( err, doc ) => {
-            if ( err ) {
-                res.json( err );
+router.get('/find/:text', (req, res) => {
+    Workshop.find({$text: {$search: req.params.text}})
+        .exec((err, doc) => {
+            if (err) {
+                res.json(err);
             } else {
-                res.json( doc );
+                res.json(doc);
             }
-        } )
+        })
 })
 
 router.post('/create', (req, res) => {
@@ -35,7 +36,26 @@ router.post('/create', (req, res) => {
     workshop.save()
         .then(data => res.json(data))
         .catch(err => res.json(err));
-})
+});
 
+router.delete('/delete/:id', ((req, res) => {
+    Workshop.findByIdAndDelete(req.params.id,
+        null,
+        (err, doc) => {
+            if (!doc) {
+                res.status(404).send('Not found');
+                return;
+            }
+
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    error: err,
+                });
+            } else {
+                res.json(doc)
+            }
+        })
+}));
 module.exports = router;
 
