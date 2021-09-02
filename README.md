@@ -302,16 +302,13 @@ Cerca i veicoli di un person
 
 ### POST /create
 
-Crea un nuovo workshop, la richiesta deve contenere questo JSON:
+Crea un nuovo veicolo, la richiesta deve contenere questo JSON:
 
 ```json
 {
-  "name": "Vicenza",
-  "email": "vicenza@gmail.com",
-  "city": "Vicenza",
-  "country": "Italy",
-  "state": "Vicenza",
-  "zip": 36100,
-  "address": "via roma"
+  "plate": "FJ300GZ",
+  "maker": "FJ300GZ",
+  "model": "Mito",
+  "year": "2015"
 }
 ```
