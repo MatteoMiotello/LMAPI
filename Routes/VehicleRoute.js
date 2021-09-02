@@ -9,6 +9,12 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }))
 
+router.get( '/personal/:personid', ((req, res) => {
+    Vehicle.find( {person: req.params.personId })
+        .then( data => res.json( data ) )
+        .catch(err => res.json(err));
+}) );
+
 router.post('/create', ((req, res) => {
     const vehicle = new Vehicle({
         plate: req.body.plate,

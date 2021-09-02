@@ -274,6 +274,31 @@ Ritorna tutti i workshop disponibili
   }
 ]
 ```
+### /personal/:personId
+
+Cerca i veicoli di un person
+
+```json
+[
+    {
+        "_id": "612f9c745a1773e2bdafa8b1",
+        "plate": "FJ300GZ",
+        "maker": "FJ300GZ",
+        "model": "Mito",
+        "year": 2015,
+        "__v": 0
+    },
+    {
+        "_id": "612f9d67b58e75055ea0cfbd",
+        "plate": "HS300XC",
+        "maker": "Alfa Romeo",
+        "model": "Giulia",
+        "year": 2020,
+        "__v": 0
+    }
+]
+```
+
 
 ### POST /create
 
