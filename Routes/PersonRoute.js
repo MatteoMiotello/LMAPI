@@ -9,17 +9,17 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }));
 
-router.get( '/details/:id', ( req, res ) => {
-    Person.findOne( { _id: req.params.id } )
-        .select( '-preferredWorkshops' )
-        .then( data => res.json( data ) )
+router.get('/details/:id', (req, res) => {
+    Person.findOne({_id: req.params.id})
+        .select('-preferredWorkshops')
+        .then(data => res.json(data))
         .catch(err => res.json(err));
-} );
+});
 
 router.get('/preferredWorkshops/:personId', (req, res) => {
     Person.findOne({_id: req.params.personId})
         .populate('preferredWorkshops')
-        .select( 'preferredWorkshops -_id' )
+        .select('preferredWorkshops -_id')
         .then(data => {
             res.json(data.preferredWorkshops)
         })
@@ -27,15 +27,38 @@ router.get('/preferredWorkshops/:personId', (req, res) => {
 });
 
 
-router.patch( '/changePassword/:id', ( req, res ) => {
-    Person.update(
-        { _id: req.params.id, password: req.body.oldPassword },
-        { password: req.body.newPassword },
-        ( err, doc ) => {
-            if ( err ) {
-                res.json( err );
+router.post('/login', ((req, res) => {
+    Person.findOne({email: req.body.email})
+        .select( '-defaultWorkshop -preferredWorkshops' )
+        .then(data => {
+            if (!data) {
+                res.json({
+                    success: false,
+                    error: "email not found"
+                })
+            }
+
+            if (data.password === req.body.password) {
+                res.json(data);
             } else {
-                res.json( doc );
+                res.json({
+                    success: false,
+                    error: "wrong password"
+                })
+            }
+        }).catch(err => res.json(err));
+
+}))
+
+router.patch('/changePassword/:id', (req, res) => {
+    Person.update(
+        {_id: req.params.id, password: req.body.oldPassword},
+        {password: req.body.newPassword},
+        (err, doc) => {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(doc);
             }
         })
 })

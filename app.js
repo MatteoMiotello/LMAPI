@@ -1,23 +1,41 @@
-const express = require( 'express' );
+const express = require('express');
 const app = express();
-const mongoose = require( 'mongoose' );
-const bodyParser = require( 'body-parser' );
-require( 'dotenv/config' );
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+require('dotenv/config');
+const {connection} = require("mongoose");
 
-app.use( bodyParser.json() );
+app.use(bodyParser.json());
 
-app.listen( 3000 , () => console.log( 'connection open' ));
+app.listen(3000, () => {
+    console.log('connection open');
+});
 
-mongoose.connect( process.env.DB_CONNECTION,
+mongoose.connect(process.env.DB_CONNECTION,
     {useNewUrlParser: true},
-    () => console.log( 'connected to db' ),
-    (err) => console.log( err ) );
+    (err) => {
+        if (!err) {
+            console.log('connected to db');
+        } else {
+            console.log('not connected to db')
+        }
+    });
 
-app.get( '/', ((req, res) => {
-    res.send( 'Hello World' );
-}) );
+app.use(((req, res) => {
+    if (mongoose.connection.readyState !== 1) {
+        res.status(500).json({
+            error: 'db is not connected',
+        });
+    } else {
+        res.json(req.body);
+    }
+}))
 
-app.use( '/vehicle', require( './Routes/VehicleRoute' ) );
-app.use( '/workshop', require( './Routes/WorkshopRoute' ) );
-app.use( '/booking', require( './Routes/BookingRoute' ) );
-app.use( '/person', require( './Routes/PersonRoute' ) );
+app.get('/', ((req, res) => {
+    res.send('Hello World');
+}));
+
+app.use('/vehicle', require('./Routes/VehicleRoute'));
+app.use('/workshop', require('./Routes/WorkshopRoute'));
+app.use('/booking', require('./Routes/BookingRoute'));
+app.use('/person', require('./Routes/PersonRoute'));

@@ -38,8 +38,43 @@ Ritorna tutti i person salvati:
 ]
 ```
 
-### GET /details/:id
+###post /login/:email
 
+deve contenere il seguente json:
+
+```json
+{
+  "email": "mail@gmail.com",
+  "password": "1c7f51876e9b1aeed258aab81c34beb0998ffa92"
+}
+```
+
+Risponde con i dettagli del person loggato se i dati sono corretti: 
+
+```json
+{
+  "preferredWorkshops": [],
+  "_id": "612fad12a0379fed576f4f8f",
+  "email": "metmiot98@gmail.com",
+  "password": "1c7f51876e9b1aeed258aab81c34beb0998ffa92",
+  "name": "Matteo",
+  "surname": "Miotello",
+  "birthDate": "06/04/1998",
+  "phone": 3923400686,
+  "__v": 0
+}
+```
+
+Risponde con il seguente JSON se non sono corretti:
+
+```json
+{
+  "success": false,
+  "error": "some error"
+}
+```
+
+### GET /details/:id
 Ritorna i dettagli di un person:
 
 ```json
