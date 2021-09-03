@@ -319,7 +319,7 @@ Ritorna tutti i workshop disponibili
 ]
 ```
 
-### GET /find/:text
+### GET /find/:text/:personId
 
 Permette di cercare tramite testo in tutti i campi di un workshop il testo riportato
 
@@ -544,6 +544,6 @@ Crea un nuovo booking type partendo da questo JSON:
 
 ```json
 {
-  "name": "Oil change",
+  "name": "Oil change"
 }
 ```

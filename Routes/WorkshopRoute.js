@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const Workshop = require('../Models/Workshop');
-const Vehicle = require("../Models/Vehicle");
+const Person = require("../Models/Person");
 
 router.get('/', ((req, res) => {
     Workshop.find()
@@ -10,14 +10,19 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }));
 
-router.get('/find/:text', (req, res) => {
+router.get('/find/:personId/:text', (req, res) => {
     Workshop.find({$text: {$search: req.params.text}})
-        .exec((err, doc) => {
-            if (err) {
-                res.json(err);
-            } else {
-                res.json(doc);
-            }
+        .then(data => {
+            Person.findById(req.params.personId)
+                .then(personData => {
+                    res.json(data.filter(workshop => {
+                        if (personData.preferredWorkshops.includes(workshop._id)) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }));
+                })
         })
 })
 
@@ -58,10 +63,10 @@ router.delete('/delete/:id', ((req, res) => {
         })
 }));
 
-router.post( '/sendPosition/:id', ( (req, res) => {
-    res.json( {
-        success:true
-    } )
-} ) );
+router.post('/sendPosition/:id', ((req, res) => {
+    res.json({
+        success: true
+    })
+}));
 module.exports = router;
 
