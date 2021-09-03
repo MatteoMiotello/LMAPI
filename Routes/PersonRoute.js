@@ -69,17 +69,10 @@ router.post('/defaultWorkshop/:id', ((req, res) => {
         {
             defaultWorkshop: req.body.defaultWorkshop
         },
-        {upsert:true},
-        ((err, doc) => {
-            if (!err) {
-                res.json(doc.defaultWorkshop);
-            } else {
-                res.status(500).json({
-                    success: false,
-                    error: err,
-                })
-            }
-        }));
+        {upsert:true}
+        )
+        .then( data => res.json( data ) )
+        .catch( err => res.json( err ) );
 }));
 
 router.patch('/changePassword/:id', (req, res) => {
