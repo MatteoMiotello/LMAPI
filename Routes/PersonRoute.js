@@ -69,13 +69,13 @@ router.post('/defaultWorkshop/:id', ((req, res) => {
         {
             defaultWorkshop: req.body.defaultWorkshop
         },
-        {upsert:true}
-        )
-        .populate( 'defaultWorkshop' )
-        .then( data => {
-            res.json( data.defaultWorkshop )
-        } )
-        .catch( err => res.json( err ) );
+        {upsert: true}
+    )
+        .populate('defaultWorkshop')
+        .then(data => {
+            res.json(data.defaultWorkshop)
+        })
+        .catch(err => res.json(err));
 }));
 
 router.patch('/changePassword/:id', (req, res) => {
@@ -90,6 +90,16 @@ router.patch('/changePassword/:id', (req, res) => {
             }
         });
 });
+
+router.post('/removePreferredWorkshop/:personId', ((req, res) => {
+    Person.findByIdAndUpdate(req.params.personId, {
+        $pull: {
+            preferredWorkshops: req.body.preferredWorkshop
+        }
+    })
+        .then(data => res.json(data))
+        .catch(err => res.json(err))
+}))
 
 router.post('/create', (req, res) => {
     const person = new Person({
