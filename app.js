@@ -39,3 +39,4 @@ app.use('/vehicle', require('./Routes/VehicleRoute'));
 app.use('/workshop', require('./Routes/WorkshopRoute'));
 app.use('/booking', require('./Routes/BookingRoute'));
 app.use('/person', require('./Routes/PersonRoute'));
+app.use('/rental', require('./Routes/RentalRoute'));

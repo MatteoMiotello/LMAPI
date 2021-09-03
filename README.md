@@ -166,6 +166,8 @@ Aggiunge un workshop preferito al person, la richiesta deve contenere l'id del w
 }
 ```
 
+###PATCH /
+
 ### POST /defaultWorkshop/:personId
 
 Aggiunge/modifica il workshop default e ritorna l'id del workshop inserito, altrimenti ritorna un errore:
@@ -418,3 +420,100 @@ Elimina un veicolo, nel caso di successo torna un JSON contenente il veicolo app
   "error": "error message"
 }
 ```
+
+## Rental
+
+### GET /
+
+Ritorna tutti i rental
+
+```json
+[
+    {
+        "_id": "6131ed38729fdd35a175ebf6",
+        "installment": 10,
+        "vehicle": {
+            "_id": "612f9d67b58e75055ea0cfbd",
+            "plate": "HS300XC",
+            "maker": "Alfa Romeo",
+            "model": "Giulia",
+            "year": 2020,
+            "__v": 0
+        },
+        "person": {
+            "_id": "6130006182c2a77cef32029a",
+            "email": "metmiot",
+            "password": "1c7f51876e9b1aeed258aab81c34beb0998ffa92",
+            "name": "Matteo",
+            "surname": "Miotello",
+            "birthDate": "06/04/1998",
+            "phone": 3923400686,
+            "preferredWorkshops": [
+                "612fff6482c2a77cef320297",
+                "612fa6b9e1550910d543a690",
+                "6130f7ff356f2348345b1386",
+                "6130f7ff356f2348345b1386"
+            ],
+            "__v": 0,
+            "defaultWorkshop": "612fa6b9e1550910d543a690"
+        },
+        "dateStart": "2021-12-02T23:00:00.000Z",
+        "dateEnd": null,
+        "frequency": 30,
+        "__v": 0
+    }
+]
+```
+
+### GET /personal/:personId
+
+Ritorna tutti i rental di un person
+
+```json
+[
+    {
+        "_id": "6131ed38729fdd35a175ebf6",
+        "installment": 10,
+        "vehicle": "612f9d67b58e75055ea0cfbd",
+        "person": "6130006182c2a77cef32029a",
+        "dateStart": "2021-12-02T23:00:00.000Z",
+        "dateEnd": null,
+        "frequency": 30,
+        "__v": 0
+    }
+]
+```
+
+### GET /details/:id
+
+ritorna i dettagli di un rental
+
+```json
+[
+    {
+        "_id": "6131ed38729fdd35a175ebf6",
+        "installment": 10,
+        "vehicle": "612f9d67b58e75055ea0cfbd",
+        "person": "6130006182c2a77cef32029a",
+        "dateStart": "2021-12-02T23:00:00.000Z",
+        "dateEnd": null,
+        "frequency": 30,
+        "__v": 0
+    }
+]
+```
+
+### POST /create/
+
+Crea un nuovo rental tramite questo JSON:
+
+```json
+{
+        "installment": 10,
+        "vehicle": "612f9d67b58e75055ea0cfbd",
+        "person": "6130006182c2a77cef32029a",
+        "dateStart": "12/03/2021"
+}
+```
+
+
