@@ -40,3 +40,4 @@ app.use('/workshop', require('./Routes/WorkshopRoute'));
 app.use('/booking', require('./Routes/BookingRoute'));
 app.use('/person', require('./Routes/PersonRoute'));
 app.use('/rental', require('./Routes/RentalRoute'));
+app.use('/bookingType', require('./Routes/BookingTypeRoute'));

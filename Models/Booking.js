@@ -8,17 +8,21 @@ const Booking = mongoose.Schema( {
     person: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Person',
+        required: true
     },
     vehicle: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Vehicle'
+        ref: 'Vehicle',
+        required: true
     },
     workshop: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Workshop',
+        required: true
     },
     bookingType: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'BookingType',
         require: true,
     }
 } );

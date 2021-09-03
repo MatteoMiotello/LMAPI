@@ -18,7 +18,8 @@ const Vehicle = mongoose.Schema( {
     },
     person: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Person'
+        ref: 'Person',
+        required: true
     }
 } );
 

@@ -69,7 +69,7 @@ router.post('/defaultWorkshop/:id', ((req, res) => {
         {
             defaultWorkshop: req.body.defaultWorkshop
         },
-        null,
+        {upsert:true},
         ((err, doc) => {
             if (!err) {
                 res.json(doc.defaultWorkshop);

@@ -24,7 +24,7 @@ const Person = new mongoose.Schema({
     defaultWorkshop: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Workshop',
-        default: null,
+        default: "",
     },
     preferredWorkshops: [ {
         type: mongoose.Schema.Types.ObjectId,

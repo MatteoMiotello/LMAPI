@@ -8,10 +8,12 @@ const Rental = new mongoose.Schema({
     vehicle: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Vehicle',
+        required: true,
     },
     person: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Person',
+        required: true
     },
     dateStart: {
         type: Date,

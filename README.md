@@ -38,7 +38,7 @@ Ritorna tutti i person salvati:
 ]
 ```
 
-###post /login/:email
+### post /login/:email
 
 deve contenere il seguente json:
 
@@ -49,7 +49,7 @@ deve contenere il seguente json:
 }
 ```
 
-Risponde con i dettagli del person loggato se i dati sono corretti: 
+Risponde con i dettagli del person loggato se i dati sono corretti:
 
 ```json
 {
@@ -75,18 +75,19 @@ Risponde con il seguente JSON se non sono corretti:
 ```
 
 ### GET /details/:id
+
 Ritorna i dettagli di un person:
 
 ```json
 {
-    "_id": "6130006182c2a77cef32029a",
-    "email": "metmiot98@gmail.com",
-    "password": "1c7f51876e9b1aeed258aab81c34beb0998ffa92",
-    "name": "Matteo",
-    "surname": "Miotello",
-    "birthDate": "06/04/1998",
-    "phone": 3923400686,
-    "__v": 0
+  "_id": "6130006182c2a77cef32029a",
+  "email": "metmiot98@gmail.com",
+  "password": "1c7f51876e9b1aeed258aab81c34beb0998ffa92",
+  "name": "Matteo",
+  "surname": "Miotello",
+  "birthDate": "06/04/1998",
+  "phone": 3923400686,
+  "__v": 0
 }
 ```
 
@@ -96,16 +97,16 @@ Ritorna il workshop default:
 
 ```json
 {
-    "_id": "612fa6b9e1550910d543a690",
-    "name": "Officina Seria Ma Non Troppo",
-    "email": "vicenza@gmail.com",
-    "city": "Vicenza",
-    "country": "Italy",
-    "state": "Vicenza",
-    "zip": 36100,
-    "__v": 0,
-    "address": "via roma",
-    "phone": "+393423573491"
+  "_id": "612fa6b9e1550910d543a690",
+  "name": "Officina Seria Ma Non Troppo",
+  "email": "vicenza@gmail.com",
+  "city": "Vicenza",
+  "country": "Italy",
+  "state": "Vicenza",
+  "zip": 36100,
+  "__v": 0,
+  "address": "via roma",
+  "phone": "+393423573491"
 }
 ```
 
@@ -131,7 +132,7 @@ Ritorna i workshop preferiti di un person:
 }
 ```
 
-###PATCH /changePassword/:id
+### PATCH /changePassword/:id
 
 Modifica la password dell'utente con id, la richiesta deve contenere un questo tipo di JSON:
 
@@ -141,6 +142,7 @@ Modifica la password dell'utente con id, la richiesta deve contenere un questo t
   "newPassword": "21d19e923ae21043fa5810704eab55bda682dc9e036bbf4c50eb732febdff835"
 }
 ```
+
 ### POST /create
 
 Crea un nuovo person, il body della richiesta deve avere questa struttura:
@@ -166,7 +168,7 @@ Aggiunge un workshop preferito al person, la richiesta deve contenere l'id del w
 }
 ```
 
-###PATCH /
+### PATCH /
 
 ### POST /defaultWorkshop/:personId
 
@@ -188,6 +190,7 @@ JSON di risposta in caso di errore:
   "error": "error message"
 }
 ```
+
 ## /booking
 
 ### GET /
@@ -218,7 +221,7 @@ Ritorna tutte le prenotazioni salvate:
       "__v": 0,
       "address": "via roma"
     },
-    "bookingType": "Oil change",
+    "bookingType": "613217e0dc68be74e7fbcf33",
     "__v": 0
   }
 ]
@@ -256,13 +259,15 @@ Ritorna tutte le prenotazioni con informazioni essenziali
 ```json
 [
   {
-    "_id": "612fa9fa25f8b467a66e2d6b",
+    "_id": "61321926dc68be74e7fbcf3c",
     "date": "2021-01-09T00:00:00.000Z",
     "workshop": {
-      "name": "Vicenza",
+      "name": "Officina Seria Ma Non Troppo",
       "city": "Vicenza"
     },
-    "bookingType": "Oil change"
+    "bookingType": {
+      "name": "Oil Change"
+    }
   }
 ]
 ```
@@ -276,11 +281,12 @@ Crea una nuova prenotazione, la richiesta deve contenere un JSON come questo:
   "date": "2021-01-09T00:00:00.000Z",
   "vehicle": "612f9d67b58e75055ea0cfbd",
   "workshop": "612fa6b9e1550910d543a690",
-  "bookingType": "Oil change"
+  "person": "6130006182c2a77cef32029a",
+  "bookingType": "613217e0dc68be74e7fbcf33"
 }
 ```
 
-###DELETE /delete/:id
+### DELETE /delete/:id
 
 Elimina un booking, nel caso di successo torna un JSON contenente il veicolo appena eliminato altrimenti ritorna:
 
@@ -313,7 +319,7 @@ Ritorna tutti i workshop disponibili
 ]
 ```
 
-###GET /find/:text
+### GET /find/:text
 
 Permette di cercare tramite testo in tutti i campi di un workshop il testo riportato
 
@@ -335,7 +341,7 @@ Crea un nuovo workshop, la richiesta deve contenere questo JSON:
 }
 ```
 
-###DELETE /delete/:id
+### DELETE /delete/:id
 
 Elimina un workshop, nel caso di successo torna un JSON contenente il veicolo appena eliminato altrimenti ritorna:
 
@@ -345,6 +351,7 @@ Elimina un workshop, nel caso di successo torna un JSON contenente il veicolo ap
   "error": "error message"
 }
 ```
+
 ## Vehicle
 
 ### GET /
@@ -371,31 +378,31 @@ Ritorna tutti i workshop disponibili
   }
 ]
 ```
+
 ### /personal/:personId
 
 Cerca i veicoli di un person
 
 ```json
 [
-    {
-        "_id": "612f9c745a1773e2bdafa8b1",
-        "plate": "FJ300GZ",
-        "maker": "FJ300GZ",
-        "model": "Mito",
-        "year": 2015,
-        "__v": 0
-    },
-    {
-        "_id": "612f9d67b58e75055ea0cfbd",
-        "plate": "HS300XC",
-        "maker": "Alfa Romeo",
-        "model": "Giulia",
-        "year": 2020,
-        "__v": 0
-    }
+  {
+    "_id": "612f9c745a1773e2bdafa8b1",
+    "plate": "FJ300GZ",
+    "maker": "FJ300GZ",
+    "model": "Mito",
+    "year": 2015,
+    "__v": 0
+  },
+  {
+    "_id": "612f9d67b58e75055ea0cfbd",
+    "plate": "HS300XC",
+    "maker": "Alfa Romeo",
+    "model": "Giulia",
+    "year": 2020,
+    "__v": 0
+  }
 ]
 ```
-
 
 ### POST /create
 
@@ -410,7 +417,7 @@ Crea un nuovo veicolo, la richiesta deve contenere questo JSON:
 }
 ```
 
-###DELETE /delete/:id
+### DELETE /delete/:id
 
 Elimina un veicolo, nel caso di successo torna un JSON contenente il veicolo appena eliminato altrimenti ritorna:
 
@@ -429,39 +436,39 @@ Ritorna tutti i rental
 
 ```json
 [
-    {
-        "_id": "6131ed38729fdd35a175ebf6",
-        "installment": 10,
-        "vehicle": {
-            "_id": "612f9d67b58e75055ea0cfbd",
-            "plate": "HS300XC",
-            "maker": "Alfa Romeo",
-            "model": "Giulia",
-            "year": 2020,
-            "__v": 0
-        },
-        "person": {
-            "_id": "6130006182c2a77cef32029a",
-            "email": "metmiot",
-            "password": "1c7f51876e9b1aeed258aab81c34beb0998ffa92",
-            "name": "Matteo",
-            "surname": "Miotello",
-            "birthDate": "06/04/1998",
-            "phone": 3923400686,
-            "preferredWorkshops": [
-                "612fff6482c2a77cef320297",
-                "612fa6b9e1550910d543a690",
-                "6130f7ff356f2348345b1386",
-                "6130f7ff356f2348345b1386"
-            ],
-            "__v": 0,
-            "defaultWorkshop": "612fa6b9e1550910d543a690"
-        },
-        "dateStart": "2021-12-02T23:00:00.000Z",
-        "dateEnd": null,
-        "frequency": 30,
-        "__v": 0
-    }
+  {
+    "_id": "6131ed38729fdd35a175ebf6",
+    "installment": 10,
+    "vehicle": {
+      "_id": "612f9d67b58e75055ea0cfbd",
+      "plate": "HS300XC",
+      "maker": "Alfa Romeo",
+      "model": "Giulia",
+      "year": 2020,
+      "__v": 0
+    },
+    "person": {
+      "_id": "6130006182c2a77cef32029a",
+      "email": "metmiot",
+      "password": "1c7f51876e9b1aeed258aab81c34beb0998ffa92",
+      "name": "Matteo",
+      "surname": "Miotello",
+      "birthDate": "06/04/1998",
+      "phone": 3923400686,
+      "preferredWorkshops": [
+        "612fff6482c2a77cef320297",
+        "612fa6b9e1550910d543a690",
+        "6130f7ff356f2348345b1386",
+        "6130f7ff356f2348345b1386"
+      ],
+      "__v": 0,
+      "defaultWorkshop": "612fa6b9e1550910d543a690"
+    },
+    "dateStart": "2021-12-02T23:00:00.000Z",
+    "dateEnd": null,
+    "frequency": 30,
+    "__v": 0
+  }
 ]
 ```
 
@@ -471,16 +478,16 @@ Ritorna tutti i rental di un person
 
 ```json
 [
-    {
-        "_id": "6131ed38729fdd35a175ebf6",
-        "installment": 10,
-        "vehicle": "612f9d67b58e75055ea0cfbd",
-        "person": "6130006182c2a77cef32029a",
-        "dateStart": "2021-12-02T23:00:00.000Z",
-        "dateEnd": null,
-        "frequency": 30,
-        "__v": 0
-    }
+  {
+    "_id": "6131ed38729fdd35a175ebf6",
+    "installment": 10,
+    "vehicle": "612f9d67b58e75055ea0cfbd",
+    "person": "6130006182c2a77cef32029a",
+    "dateStart": "2021-12-02T23:00:00.000Z",
+    "dateEnd": null,
+    "frequency": 30,
+    "__v": 0
+  }
 ]
 ```
 
@@ -490,16 +497,16 @@ ritorna i dettagli di un rental
 
 ```json
 [
-    {
-        "_id": "6131ed38729fdd35a175ebf6",
-        "installment": 10,
-        "vehicle": "612f9d67b58e75055ea0cfbd",
-        "person": "6130006182c2a77cef32029a",
-        "dateStart": "2021-12-02T23:00:00.000Z",
-        "dateEnd": null,
-        "frequency": 30,
-        "__v": 0
-    }
+  {
+    "_id": "6131ed38729fdd35a175ebf6",
+    "installment": 10,
+    "vehicle": "612f9d67b58e75055ea0cfbd",
+    "person": "6130006182c2a77cef32029a",
+    "dateStart": "2021-12-02T23:00:00.000Z",
+    "dateEnd": null,
+    "frequency": 30,
+    "__v": 0
+  }
 ]
 ```
 
@@ -509,11 +516,34 @@ Crea un nuovo rental tramite questo JSON:
 
 ```json
 {
-        "installment": 10,
-        "vehicle": "612f9d67b58e75055ea0cfbd",
-        "person": "6130006182c2a77cef32029a",
-        "dateStart": "12/03/2021"
+  "installment": 10,
+  "vehicle": "612f9d67b58e75055ea0cfbd",
+  "person": "6130006182c2a77cef32029a",
+  "dateStart": "12/03/2021"
 }
 ```
 
+## /bookingType
 
+### GET /
+
+Ritorna tutti i booking Type
+
+```json
+[
+    {
+        "_id": "613217e0dc68be74e7fbcf33",
+        "name": "Oil Change",
+        "__v": 0
+    }
+]
+```
+### POST /create
+
+Crea un nuovo booking type partendo da questo JSON:
+
+```json
+{
+  "name": "Oil change",
+}
+```
