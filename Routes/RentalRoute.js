@@ -17,6 +17,15 @@ router.get('/details/:id', ((req, res) => {
         .catch(err => res.json(err));
 }))
 
+router.get( '/personal/:personId', ( (req, res) => {
+    Rental.findOne( { person: req.params.personId } )
+        .populate( { path:'vehicle', select:'-_id plate maker model' } )
+        .select( 'installment startDate vehicle' )
+        .then( data => {
+            res.json( data );
+        } ).catch( err => res.json( err ) );
+} ) )
+
 router.post('/create', ((req, res) => {
     const rental = new Rental({
         installment: req.body.installment,
@@ -31,11 +40,5 @@ router.post('/create', ((req, res) => {
         .then(data => res.json(data))
         .catch(err => res.json(err));
 }));
-
-router.get('/personal/:personId', ((req, res) => {
-    Rental.find({person: req.params.personId})
-        .then(data => res.json(data))
-        .catch(err => res.status(500).json(err));
-}))
 
 module.exports = router;
