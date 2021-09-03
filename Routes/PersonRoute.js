@@ -72,9 +72,9 @@ router.post('/defaultWorkshop/:id', ((req, res) => {
         null,
         ((err, doc) => {
             if (!err) {
-                res.json(doc.defaultWorkshop );
+                res.json(doc.defaultWorkshop);
             } else {
-                res.status( 500 ).json({
+                res.status(500).json({
                     success: false,
                     error: err,
                 })
@@ -111,10 +111,19 @@ router.post('/create', (req, res) => {
 });
 
 router.post('/addPreferredWorkshop/:personId', (req, res) => {
-    Person.update(
-        {_id: req.params.personId},
+    Person.findByIdAndUpdate(
+        req.params.personId,
         {$push: {preferredWorkshops: req.body.workshop}},
-        () => res.send('Completed')
+        (err, doc) => {
+            if (!err) {
+                res.json(doc);
+            } else {
+                res.json({
+                    success: false,
+                    error: err
+                })
+            }
+        }
     )
 });
 
