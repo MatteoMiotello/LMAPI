@@ -57,5 +57,11 @@ router.delete('/delete/:id', ((req, res) => {
             }
         })
 }));
+
+router.post( '/sendPosition/:id', ( (req, res) => {
+    res.json( {
+        success:true
+    } )
+} ) );
 module.exports = router;
 
