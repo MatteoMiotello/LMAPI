@@ -9,7 +9,7 @@ router.get('/', ((req, res) => {
         .catch(err => res.json(err));
 }))
 
-router.get('/personal/:personid', ((req, res) => {
+router.get('/personal/:personId', ((req, res) => {
     Vehicle.find({person: req.params.personId})
         .then(data => res.json(data))
         .catch(err => res.json(err));

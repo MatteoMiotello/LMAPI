@@ -410,6 +410,7 @@ Crea un nuovo veicolo, la richiesta deve contenere questo JSON:
 
 ```json
 {
+  "person": "6130006182c2a77cef32029a",
   "plate": "FJ300GZ",
   "maker": "FJ300GZ",
   "model": "Mito",
