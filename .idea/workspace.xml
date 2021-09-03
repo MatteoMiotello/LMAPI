@@ -7,8 +7,7 @@
     <list default="true" id="cdfca4e3-6f07-4bf4-9e63-63203ae7a8f8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Routes/VehicleRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/VehicleRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Routes/PersonRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/Routes/PersonRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +32,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/mongoose/index.d.ts" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="1xXfDQF83S87avGQ6dlpXcDi6VD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -49,7 +51,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -64,7 +66,7 @@
       <workItem from="1630506235074" duration="12009000" />
       <workItem from="1630529482827" duration="210000" />
       <workItem from="1630529699937" duration="9911000" />
-      <workItem from="1630598356663" duration="5629000" />
+      <workItem from="1630598356663" duration="8460000" />
     </task>
     <servers />
   </component>

@@ -90,6 +90,25 @@ Ritorna i dettagli di un person:
 }
 ```
 
+### GET /defaultWorkshop/:personId
+
+Ritorna il workshop default:
+
+```json
+{
+    "_id": "612fa6b9e1550910d543a690",
+    "name": "Officina Seria Ma Non Troppo",
+    "email": "vicenza@gmail.com",
+    "city": "Vicenza",
+    "country": "Italy",
+    "state": "Vicenza",
+    "zip": 36100,
+    "__v": 0,
+    "address": "via roma",
+    "phone": "+393423573491"
+}
+```
+
 ### GET /preferredWorkshops/:personId
 
 Ritorna i workshop preferiti di un person:
@@ -147,6 +166,26 @@ Aggiunge un workshop preferito al person, la richiesta deve contenere l'id del w
 }
 ```
 
+### POST /defaultWorkshop/:personId
+
+Aggiunge/modifica il workshop default e ritorna l'id del workshop inserito, altrimenti ritorna un errore:
+
+JSON di richiesta:
+
+```json
+{
+  "defaultWorkshop": "612fa6b9e1550910d543a690"
+}
+```
+
+JSON di risposta in caso di errore:
+
+```json
+{
+  "success": false,
+  "error": "error message"
+}
+```
 ## /booking
 
 ### GET /
