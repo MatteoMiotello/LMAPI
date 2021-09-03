@@ -17,6 +17,7 @@ router.get('/personal/:personid', ((req, res) => {
 
 router.post('/create', ((req, res) => {
     const vehicle = new Vehicle({
+        person: req.body.person,
         plate: req.body.plate,
         maker: req.body.maker,
         model: req.body.model,
