@@ -20,7 +20,7 @@ router.get('/details/:id', ((req, res) => {
 router.get( '/personal/:personId', ( (req, res) => {
     Rental.findOne( { person: req.params.personId } )
         .populate( { path:'vehicle', select:'-_id plate maker model' } )
-        .select( 'installment startDate vehicle frequency' )
+        .select( 'installment dateStart vehicle frequency' )
         .then( data => {
             res.json( data );
         } ).catch( err => res.json( err ) );
