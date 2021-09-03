@@ -71,7 +71,7 @@ router.post('/defaultWorkshop/:id', ((req, res) => {
         },
         {upsert:true}
         )
-        .then( data => res.json( data ) )
+        .then( data => res.json( data.defaultWorkshop ) )
         .catch( err => res.json( err ) );
 }));
 
