@@ -5,6 +5,7 @@ const Booking = require('../Models/Booking');
 const Vehicle = require("../Models/Vehicle");
 router.get('/', ((req, res) => {
     Booking.find()
+        .sort( 'date' )
         .populate('workshop')
         .populate('vehicle')
         .populate( 'person' )
@@ -25,6 +26,7 @@ router.get('/details/:id', (req, res) => {
 
 router.get('/all', ((req, res) => {
     Booking.find()
+        .sort( 'date' )
         .populate({path: 'workshop', select: 'name city -_id'})
         .populate( {path: 'bookingType', select: '-_id name'} )
         .select('date bookingType')
@@ -65,5 +67,14 @@ router.delete('/delete/:id', ((req, res) => {
             }
         })
 }));
+
+router.get( '/personal/:personId', ( (req, res) => {
+    Booking.find( { person: req.params.personId } )
+        .populate('bookingType')
+        .populate( 'vehicle' )
+        .populate( 'workshop' )
+        .then( data => res.json( data ) )
+        .catch( err => res.json( err ) );
+} ) )
 
 module.exports = router;
