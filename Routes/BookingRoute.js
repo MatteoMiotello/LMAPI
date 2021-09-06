@@ -70,6 +70,7 @@ router.delete('/delete/:id', ((req, res) => {
 
 router.get( '/personal/:personId', ( (req, res) => {
     Booking.find( { person: req.params.personId } )
+        .sort( 'data' )
         .populate('bookingType')
         .populate( 'vehicle' )
         .populate( 'workshop' )
