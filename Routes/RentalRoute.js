@@ -31,8 +31,8 @@ router.post('/create', ((req, res) => {
         installment: req.body.installment,
         vehicle: req.body.vehicle,
         person: req.body.person,
-        dateStart: req.body.dateStart,
-        dateEnd: req.body.dateEnd,
+        dateStart: new Date( req.body.dateStart ),
+        dateEnd: new Date( req.body.dateEnd ),
         frequency: req.body.frequency,
     });
 
