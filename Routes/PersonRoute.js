@@ -20,12 +20,10 @@ router.get('/details/:id', (req, res) => {
 router.get('/preferredWorkshops/:personId', (req, res) => {
     Person.findOne({_id: req.params.personId})
         .populate('preferredWorkshops')
-        .populate( 'defaultWorkshop' )
+        .populate('defaultWorkshop')
         .then(data => {
-            res.json(data.preferredWorkshops.map(workshop => {
-                console.log( workshop._id.toString() == data.defaultWorkshop._id.toString() );
-
-                if ( workshop._id.toString() == data.defaultWorkshop._id.toString()) {
+            let result = data.preferredWorkshops.map((workshop) => {
+                if (data.defaultWorkshop && (workshop._id.toString() == data.defaultWorkshop._id.toString())) {
                     return {
                         workshop: workshop,
                         isDefault: true
@@ -36,7 +34,11 @@ router.get('/preferredWorkshops/:personId', (req, res) => {
                         isDefault: false
                     }
                 }
-            }));
+            })
+
+            console.log(result);
+
+            res.json( result );
         })
         .catch(err => res.json(err));
 });

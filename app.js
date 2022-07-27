@@ -14,11 +14,11 @@ app.listen(3000, () => {
 mongoose.connect(process.env.DB_CONNECTION,
     {useNewUrlParser: true},
     (err) => {
-        console.log( err );
 
         if (!err) {
             console.log('connected to db');
         } else {
+            console.log( err );
             console.log('not connected to db')
         }
     });
