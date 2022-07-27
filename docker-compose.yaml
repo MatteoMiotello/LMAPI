@@ -1,0 +1,26 @@
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.4.10-focal
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    volumes:
+      - ~/apps/mongo:/data/db
+    restart: always
+
+  express:
+    container_name: express
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    expose:
+      - 3050
+    volumes:
+      - /app/node_modules
+      - ./.env:/app/.env
+      - ./:/app
+    restart: always
