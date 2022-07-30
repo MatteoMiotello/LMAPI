@@ -11,7 +11,9 @@ app.listen(3000, () => {
     console.log('connection open');
 });
 
-mongoose.connect(process.env.DB_CONNECTION,
+const connectionParam='mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOST
+
+mongoose.connect(connectionParam,
     {useNewUrlParser: true},
     (err) => {
 
